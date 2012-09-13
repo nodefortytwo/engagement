@@ -10,6 +10,7 @@ function redirect($url, $code='301', $root = true){
 	
     if ($root){
         $url = '/' . SITE_ROOT . $url;
+        $url = str_replace('//', '/', $url);
     }
     
 	switch ($code){
