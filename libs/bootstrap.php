@@ -1,5 +1,12 @@
 <?php
-require('settings.php');
+
+$host = $_SERVER['HTTP_HOST'];
+$path = $host . '.settings.php';
+if (file_exists($path)){
+    require($path);
+}else{  
+    require('settings.php');
+}
 require('misc.php');
 require('db.php');
 require('core.php');

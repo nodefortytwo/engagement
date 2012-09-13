@@ -16,6 +16,7 @@ function engagement_routes() {
 }
 
 function engagement_landing() {
+    global $facebook;
     db()->select_db('engagement');
     process_pages();
     process_posts();
@@ -25,7 +26,7 @@ function engagement_landing() {
     <input type="text" name="url" id="url"/>
     <input type="submit"/>
     </form></div></div></div>');
-
+    $page->c('<div class="row"><div class="span11"><strong><p>Current Access Token: ' . $facebook->getAccessToken() . '</strong></p></div></div>');
     if (!empty($_POST)) {
         $fb_page = engagement_get_page($_POST['url']);
         redirect('/engagement', 301, true);
@@ -175,6 +176,7 @@ function fb_get_page($url) {
 }
 
 function fb_get_posts($id, $url = null) {
+    global $facebook;
     $limit = 25;
     if (!$url) {
         $latest = db()->query('SELECT posted FROM post WHERE page_id = ' . $id . ' ORDER BY posted DESC LIMIT 1;')->fetch_all();
@@ -183,7 +185,7 @@ function fb_get_posts($id, $url = null) {
             $latest = '&since=' . $latest;
         }else{$latest = '';}
         //$latest = '';
-        $url = FB_GURL . '/' . $id . '/posts?access_token=' . FB_TOKEN . '&limit=' . $limit . $latest;
+        $url = FB_GURL . '/' . $id . '/posts?access_token=' . $facebook->getAccessToken() . '&limit=' . $limit . $latest;
     }
     if (!isset($posts)) {
         $posts = array();
