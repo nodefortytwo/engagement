@@ -48,7 +48,7 @@ class Template{
                 if(strpos($file, '//') !== false){
                     $this->css[] = $file;
                 }else{
-                    $this->css[] = '//'. HOST . '' . SITE_ROOT . ':8080/' . PATH_TO_MODULES . '/' . $module_name . '/' . $file;
+                    $this->css[] = '//'. HOST . '/' . SITE_ROOT . '/' . PATH_TO_MODULES . '/' . $module_name . '/' . $file;
                 }
             }
         }
@@ -56,7 +56,7 @@ class Template{
     
     public function add_css($file, $module_name){
         
-        $this->css[] = '//'. HOST . '' . SITE_ROOT . ':8080/' . PATH_TO_MODULES . '/' . $module_name . '/' . $file;
+        $this->css[] = '//'. HOST . '/' . SITE_ROOT . '/' . PATH_TO_MODULES . '/' . $module_name . '/' . $file;
         
     }
     
@@ -72,7 +72,7 @@ class Template{
         $files = exec_hook('global_js');
         foreach($files as $module_name=>$module){
             foreach($module as $file){
-                $this->js[] = '//'. HOST . '' . SITE_ROOT . ':8080/' . PATH_TO_MODULES . '/' . $module_name . '/' . $file;
+                $this->js[] = '//'. HOST . '/' . SITE_ROOT . '/' . PATH_TO_MODULES . '/' . $module_name . '/' . $file;
             }
         }
     }
@@ -82,7 +82,7 @@ class Template{
         if (beginsWith($file, 'http://') || beginsWith($file, 'https://') || beginsWith($file, '//')){
             $this->js[] = $file;
         }else{
-            $this->js[] = '//'. HOST . '' . SITE_ROOT . ':8080/' . PATH_TO_MODULES . '/' . $module_name . '/' . $file;
+            $this->js[] = '//'. HOST . '/' . SITE_ROOT . '/' . PATH_TO_MODULES . '/' . $module_name . '/' . $file;
         }
         
     }
