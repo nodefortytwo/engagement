@@ -20,11 +20,13 @@ function pages_routes(){
 
 function pages_homepage(){
     $page = new Template();
-    $page->c('<h1 class="ten columns">' . 'Hi!' . '</h1>');
+    $page->c('<h1 class="ten columns">' . 'Welcome to FreshNetworks Reporting' . '</h1>');
+    $page->c('<p>' . 'Click on the client name below to run queries on the correct database.');
     $sites = exec_hook('register_sites');
-    foreach($sites as $site){
-        $page->c(l($site['name'], '/'.$site['path']));
+    foreach($sites as &$site){
+        $site = l($site['name'], '/'.$site['path']);
     }
+    $page->c(template_list($sites));
     return $page->render();   
 }
 

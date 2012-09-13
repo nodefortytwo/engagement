@@ -43,4 +43,6 @@ function renderResults(data) {
     }
     html += '</table>';
     $('#query_results').append(html);
+    html = '<pre>' + data.query + '</pre>';
+    $('#query_results').append(html);
 }

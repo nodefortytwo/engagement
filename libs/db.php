@@ -28,10 +28,16 @@ class Database {
         if ($this->result = mysql_query($sql, $this->connection)){
         
         }else{
-            print ($sql . "\n<br/>\n");
+
             elog('Query failed: ' . mysql_error() . '
             SQL: ' . $this->sql, 'error');
-            die('Query failed: ' . mysql_error());
+            $res = array(
+                'status' => 500,
+                'msg' => '',
+                'sql' => $sql
+            );
+            $res['msg'] = 'Query failed: ' . mysql_error();
+            die(json_encode($res));
         }
         if ($this->log){
             log_query($this->sql, $this->vars);
