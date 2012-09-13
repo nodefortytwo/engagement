@@ -34,6 +34,12 @@ function module_get_path($module_name){
 
 function get_data($url)
 {
+    global $last_request;
+    //horrible rate limit hack
+    if (time() - $last_request < 5){
+        sleep(5);
+    }
+    $last_request = time();
     $ch = curl_init();
     $timeout = 5;
     curl_setopt( $ch, CURLOPT_USERAGENT, "Mozilla/5.0 (Windows; U; Windows NT 5.1; rv:1.7.3) Gecko/20041001 Firefox/0.10.1" );
