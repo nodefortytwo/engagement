@@ -11,8 +11,8 @@ define('MYSQL_PASS', 'Zee1suli');
 define('MYSQL_DB', '');
 
 //Theme Stuff
-define('HOST', 'localhost:8888');
-define('SITE_ROOT', 'internal-reporting');
+define('HOST', 'reporting.vm06.fn.internal');
+define('SITE_ROOT', '');
 define('PATH_TO_MODULES', 'libs/modules');
 
 //Dev / Live Settings
