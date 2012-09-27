@@ -122,6 +122,8 @@ class Database {
         $this->db_selected = false;
         if (mysql_select_db($db, $this->connection)){
            $this->db_selected = $db;
+        }else{
+             die ('Can\'t use foo : ' . mysql_error());
         }
     }
 }
