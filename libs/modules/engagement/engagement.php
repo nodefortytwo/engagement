@@ -12,20 +12,23 @@ function engagement_routes() {
     $paths['engagement/page'] = array('callback' => 'engagement_page');
     $paths['engagement/api/update_page'] = array('callback' => 'engagement_api_update_page');
     $paths['engagement/api/update_posts'] = array('callback' => 'engagement_api_update_posts');
+    $paths['engagement/api/reindex_posts'] = array('callback' => 'engagement_api_reindex_posts');
+    $paths['engagement/log'] = array('callback' => 'engagement_log');
     return $paths;
 }
 
 function engagement_landing() {
     global $facebook;
     db()->select_db('engagement');
-    process_pages();
-    process_posts();
+    
     $page = new Template();
     $page->c('<div class="row"><div class="span11"><div class="well"><form method="post">
     <h2>Add Page</h2>
     <input type="text" name="url" id="url"/>
     <input type="submit"/>
     </form></div></div></div>');
+    
+    $page->c('<div class="row"><div class="span11"><strong><p><a href="/facebook/auth">Auth Your Account</a></p></strong></p></div></div>');
     $page->c('<div class="row"><div class="span11"><strong><p>Current Access Token: ' . $facebook->getAccessToken() . '</strong></p></div></div>');
     if (!empty($_POST)) {
         $fb_page = engagement_get_page($_POST['url']);
@@ -52,6 +55,7 @@ function engagement_landing() {
         $actions = array();
         $actions[] = '<a href="./api/update_page/?fb_page=' . $p['id'] . '">' . 'Update Page Stats' . '</a>';
         $actions[] = '<a href="./api/update_posts/?fb_page=' . $p['id'] . '">' . 'Update Posts' . '</a>';
+        $actions[] = '<a href="./api/reindex_posts/?fb_page=' . $p['id'] . '">' . 'Re-index Posts' . '</a>';
 
         $page->c('<tr>');
         $page->c('<td> <a href="page/~/' . $p['id'] . '">' . $p['title'] . '</a></td>');
@@ -136,6 +140,7 @@ function engagement_page($page_id = 0) {
 
 function engagement_get_page($url, $update = false) {
     $page = db()->query('SELECT * FROM pages WHERE url = "' . $url . '"')->fetch_all();
+    
     if (!empty($page) && !$update) {
         return json_decode($page[0]['data']);
     } else {
@@ -187,10 +192,12 @@ function fb_get_posts($id, $url = null) {
         //$latest = '';
         $url = FB_GURL . '/' . $id . '/posts?access_token=' . $facebook->getAccessToken() . '&limit=' . $limit . $latest;
     }
+    en_log($url);
     if (!isset($posts)) {
         $posts = array();
     }
     $data = json_decode(get_data($url));
+    en_log($data);
     if (is_object($data) && property_exists($data, 'data')) {
         $posts = array_merge($posts, $data->data);
         if (count($data->data) == $limit) {
@@ -271,6 +278,8 @@ function engagement_api_update_page() {
             engagement_get_page($page[0]['url'], true);
         }
     }
+    process_pages();
+    process_posts();
     redirect('/engagement', 301, true);
 }
 
@@ -279,5 +288,28 @@ function engagement_api_update_posts() {
     if (!empty($_GET) && !empty($_GET['fb_page'])) {
         engagement_get_posts($_GET['fb_page'], true);
     }
+    process_pages();
+    process_posts();
     redirect('/engagement', 301, true);
+}
+
+function engagement_api_reindex_posts() {
+    db()->select_db('engagement');
+    db()->query('delete from post WHERE page_id = ' . $_GET['fb_page']);
+    redirect('/engagement', 301, true);
+}
+
+function en_log($data){
+    db()->select_db('engagement');
+    db()->query('INSERT INTO log (data) VALUES ("'.mysql_real_escape_string(json_encode($data)).'")');
+}
+
+function engagement_log(){
+    db()->select_db('engagement');
+    $log = db()->query('SELECT data FROM log;')->fetch_all();
+    foreach($log as $l){
+        $data = json_decode($l['data']);
+        var_dump($data);
+        print ('<hr/>');
+    }
 }

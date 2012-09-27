@@ -15,7 +15,6 @@ $(document).ready(function() {
     })
 })
 function submitQuery(sub) {
-    console.log(sub);
     $.ajax('runquery/', {
         type : "POST",
         dataType : "json",
