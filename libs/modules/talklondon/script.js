@@ -15,7 +15,8 @@ $(document).ready(function() {
     })
 })
 function submitQuery(sub) {
-    $.ajax('/talklondon/runquery/', {
+    console.log(sub);
+    $.ajax('runquery/', {
         type : "POST",
         dataType : "json",
         data : sub
