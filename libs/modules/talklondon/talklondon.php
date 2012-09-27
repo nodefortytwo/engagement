@@ -1,7 +1,7 @@
 <?php
 
 function talklondon_register_sites() {
-    return array('name' => 'Talk London', 'path' => 'talklondon', 'database' => 'talk_london');
+    return array('name' => 'Talk London', 'path' => 'talklondon', 'database' => TALK_LONDON_DB);
 }
 
 function talklondon_routes() {
