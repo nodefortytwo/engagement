@@ -10,7 +10,7 @@ define('MYSQL_PASS', 'Zee1suli');
 //define('MYSQL_PASS', 'root');
 define('MYSQL_DB', '');
 
-define('TALK_LONDON_DB', 'talk_london_gov_uk_live');
+define('TALK_LONDON_DB', 'talklondon_london_gov_uk_live');
 
 //Theme Stuff
 define('HOST', 'reporting.vm06.fn.internal');

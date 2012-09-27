@@ -123,7 +123,7 @@ class Database {
         if (mysql_select_db($db, $this->connection)){
            $this->db_selected = $db;
         }else{
-             die ('Can\'t use foo : ' . mysql_error());
+             die ('Can\'t use '.$db.' : ' . mysql_error());
         }
     }
 }
