@@ -63,6 +63,8 @@ function talklondon_run_query($query = '', $from = '', $to = '') {
 
 function talklondon_exec_query($obj, $query) {
     $site = talklondon_register_sites();
+    var_dump($site);
+    die();
     $args = array(':to' => $obj->to, ':from' => $obj->from);
 
     db()->select_db($site['database']);
