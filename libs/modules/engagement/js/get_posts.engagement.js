@@ -13,7 +13,8 @@ $(document).ready(function(){
 
 
 function recursiveRequest(id, since, until, callback){
-    var url = '/' + SYSTEM.SITE_ROOT + '/page/get_posts/json/~/' + id + '/' + since + '/' + until + '/';
+    var url = '/page/get_posts/json/~/' + id + '/' + since + '/' + until + '/';
+    url = getUrl(url);
     writeToLog('Requesting: ' + url);
     $.ajax({
         url : url,
