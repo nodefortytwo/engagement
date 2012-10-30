@@ -4,7 +4,7 @@ $(document).ready(function() {
 	
 });
 
-function get_url(path){
+function getUrl(path){
 
     if (SYSTEM.SITE_ROOT != '') {
         path = '/' + SYSTEM.SITE_ROOT + '/' + path;

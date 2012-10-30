@@ -116,7 +116,7 @@ function between($haystack, $string1, $string2) {
     return $val;
 }
 
-function getUrl($path) { 
+function get_url($path) { 
     if (SITE_ROOT != '') {
         $path = '/' . SITE_ROOT . '/' . $path;
     } else {
