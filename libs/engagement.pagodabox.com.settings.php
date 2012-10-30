@@ -4,8 +4,8 @@ ini_set('display_errors', '1');
 
 //Database
 define('MYSQL_HOST', 'tunnel.pagodabox.com:3306');
-define('MYSQL_USER', 'tresa');
-define('MYSQL_PASS', '9a8w3hBF');
+define('MYSQL_USER', 'carie');
+define('MYSQL_PASS', 'uavdqCwp');
 define('MYSQL_DB', 'engagement');
 
 //Theme Stuff
