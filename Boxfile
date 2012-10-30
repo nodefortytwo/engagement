@@ -1,0 +1,15 @@
+web1: #component type & number
+  name: chrncl            #component settings
+  shared_writable_dirs:
+    - uploads
+  php_extensions:
+    - mysql
+    - gd
+    - curl
+    - hash
+    - json
+    - xml
+     
+db1: #component type & number 
+  name: engagement            #component settings
+  type: mysql
