@@ -22,6 +22,6 @@ define('DEBUG_LEVEL', 0);
 define('CRON_TIME', 60);//seconds
 define('TRACE', false);
 
-define('FB_KEY', '236032206523485');
-define('FB_SECRET', 'c98392cd7bf20deddbb23f01b57ae5ed');
+define('FB_KEY', '162949260513773');
+define('FB_SECRET', '70da32316e3ce543b19139e27b4d7438');
 ?>
