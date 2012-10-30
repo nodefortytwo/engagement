@@ -42,7 +42,7 @@
     <div class="navbar navbar-fixed-top">
       <div class="navbar-inner">
         <div class="container">
-         <?php print(l('Freshneworks Reporting', '/', 'brand'));?>
+         <?php print(l('Freshneworks Engagement', get_url('/'), 'brand'));?>
           <div class="nav-collapse collapse">
             
              
@@ -52,8 +52,8 @@
       </div>
     </div>
     
-    <div class="lame container">
-      <div id="body" class="row">
+    <div class="lame container" style="padding:0 20px 0 20px; margin-top: 45px;">
+      <div class="row-fluid">
           <div class="span12"> 
             <?php print($this->compiled_messages)?>
             

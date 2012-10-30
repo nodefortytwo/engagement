@@ -42,7 +42,8 @@ $status = 0;
 ob_start();
 //get the routing from each module, check them against the current path
 $paths = exec_hook('routes');
-foreach($paths as $module){
+foreach($paths as $module_name => $module){
+    current_module($module_name);
     if (array_key_exists($path, $module)){
         $callback = $module[$path];
         $access = true;

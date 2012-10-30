@@ -3,17 +3,16 @@ error_reporting(E_ALL);
 ini_set('display_errors', '1');
 ini_set('memory_limit', '128M');
 //Database
-define('MYSQL_HOST', 'reporting.fn.internal');
+define('MYSQL_HOST', 'engagment.fn.internal');
 //define('MYSQL_HOST', ':/Applications/MAMP/tmp/mysql/mysql.sock');
 define('MYSQL_USER', 'root');
 define('MYSQL_PASS', 'Zee1suli');
 //define('MYSQL_PASS', 'root');
-define('MYSQL_DB', '');
+define('MYSQL_DB', 'engagement');
 
-define('TALK_LONDON_DB', 'talklondon_london_gov_uk_live');
 
 //Theme Stuff
-define('HOST', 'reporting.vm06.fn.internal');
+define('HOST', 'engagment.vm06.fn.internal');
 define('SITE_ROOT', '');
 define('PATH_TO_MODULES', 'libs/modules');
 
@@ -22,4 +21,9 @@ define('PATH_TO_MODULES', 'libs/modules');
 define('DEBUG_LEVEL', 0);
 //How often should cron run? (requires the php "server" to be running)
 define('CRON_TIME', 60);//seconds
+
+define('FB_KEY', '');
+define('FB_SECRET', '');
+
+
 ?>

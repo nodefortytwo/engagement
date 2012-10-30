@@ -4,7 +4,7 @@ function pages_routes(){
     $paths = array();
     
     $paths['home'] = array(
-        'callback' => 'pages_homepage'
+        'callback' => 'engagement_home'
     );
     $paths['404'] = array(
         'callback' => 'pages_404'

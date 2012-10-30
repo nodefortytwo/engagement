@@ -82,17 +82,7 @@ function template_tabs($tabs = array(), $active = 0){
     
 }
 
-function l($text, $url, $class='', $root = false){
-   
-    if (!$root){
-        if (SITE_ROOT != ''){
-            $url = '//'.HOST.'/' . SITE_ROOT . $url; 
-        }else{
-            $url = '//'.HOST. $url;
-        }
-    }
-    
-    
+function l($text, $url, $class='', $root = false){   
     $return = '<a href="' . $url . '" class="'.$class.'">' . $text . '</a>';
     return $return;
 }

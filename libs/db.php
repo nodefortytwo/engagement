@@ -81,6 +81,15 @@ class Database {
         
     }
     
+    public function fetch_col($col) {
+        $res = $this->fetch_all();
+        $ret = array();
+        foreach ($res as $row) {
+            $ret[] = $row[$col];
+        }
+        return $ret;
+    }
+    
     public function last_id(){
         
         return(mysql_insert_id($this->connection));
