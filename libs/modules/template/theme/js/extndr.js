@@ -5,12 +5,16 @@ $(document).ready(function() {
 });
 
 function getUrl(path){
-
-    if (SYSTEM.SITE_ROOT != '') {
+    
+    if (path.charAt(0) == '/'){
+        path = path.substr(1);
+    }
+    
+    if (SYSTEM.SITE_ROOT.length > 0) {
         path = '/' + SYSTEM.SITE_ROOT + '/' + path;
     } else {
         path = '/' + path;
     }
 
-    return '' . path.replace('//','/');
+    return path.replace('//','/');
 }
