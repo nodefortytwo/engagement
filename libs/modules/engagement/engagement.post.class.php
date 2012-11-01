@@ -57,7 +57,7 @@ class Post
                 $this->message = '';
             }
             $this->type = $data->type;
-            if (isset($data->likes)) {
+            if (isset($data->status_type)) {
                 $this->status_type = $data->status_type;
             } else {
                 $this->status_type = '';
