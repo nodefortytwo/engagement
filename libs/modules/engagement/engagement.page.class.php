@@ -107,7 +107,7 @@ class Page
         return false;
 
     }
-
+	
     private function load_from_fb($object) {
         if (!isset($object)) {
             global $facebook;
@@ -123,6 +123,10 @@ class Page
         $this->updated = time();
         $this->save();
     }
+
+	public function refresh(){
+		$this->load_from_fb();
+	}
 
     public function get_posts($db_only = true) {
         $sql = 'SELECT id FROM post WHERE page = :id ORDER BY posted DESC';//order by date posted

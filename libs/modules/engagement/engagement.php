@@ -11,8 +11,10 @@ function engagement_routes() {
     $r['page/add'] = array('callback' => 'engagement_add_page');
     $r['page/get_posts'] = array('callback' => 'engagement_get_posts');
     $r['page/get_posts/json'] = array('callback' => 'engagement_get_posts_json');
+	$r['page/update_stats'] = array('callback' => 'engagement_update_stats');
     $r['user/process'] = array('callback' => 'engagement_process_users');
     $r['user/process/json'] = array('callback' => 'engagement_process_users_json');
+	
     return $r;
 }
 
@@ -189,6 +191,7 @@ function engagement_page_table() {
     foreach ($pages as $page) {
         $actions = array();
         $actions[] = l('Get New Posts', get_url('/page/get_posts/~/'.$page->id .'/'));
+		$actions[] = l('Update Stats', get_url('/page/update_stats/~/'.$page->id .'/'));
         $actions = implode(' - ', $actions);
         
         $table .= '<tr>';
@@ -236,4 +239,11 @@ function engagement_process_users_json(){
         sleep(0.5);
     }
     return json_encode(array('count' => $cnt));
+}
+
+function engagement_update_stats($id){
+	$page = new Page($id);
+	$page->refresh();
+	
+    redirect(get_url('/'), 301, true);
 }
