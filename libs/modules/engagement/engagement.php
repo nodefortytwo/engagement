@@ -12,6 +12,7 @@ function engagement_routes() {
     $r['page/get_posts'] = array('callback' => 'engagement_get_posts');
     $r['page/get_posts/json'] = array('callback' => 'engagement_get_posts_json');
 	$r['page/update_stats'] = array('callback' => 'engagement_update_stats');
+	$r['page/delete_posts'] = array('callback' => 'engagement_delete_posts');
     $r['user/process'] = array('callback' => 'engagement_process_users');
     $r['user/process/json'] = array('callback' => 'engagement_process_users_json');
 	
@@ -192,6 +193,7 @@ function engagement_page_table() {
         $actions = array();
         $actions[] = l('Get New Posts', get_url('/page/get_posts/~/'.$page->id .'/'));
 		$actions[] = l('Update Stats', get_url('/page/update_stats/~/'.$page->id .'/'));
+		$actions[] = l('Delete Posts', get_url('/page/delete_posts/~/'.$page->id .'/'));
         $actions = implode(' - ', $actions);
         
         $table .= '<tr>';
