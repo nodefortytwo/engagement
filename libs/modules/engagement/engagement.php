@@ -247,3 +247,11 @@ function engagement_update_stats($id){
 	
     redirect(get_url('/'), 301, true);
 }
+
+function engagement_delete_posts($id){
+	
+	db()->query('DELETE FROM post WHERE page = ' . $id);
+	$page = new Page($id);
+	$page->save();
+    redirect(get_url('/'), 301, true);
+}
